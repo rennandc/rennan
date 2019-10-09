@@ -18,6 +18,12 @@
     app:tabBackground="@color/colorPrimary"
     app:tabMode="fixed">
     </com.google.android.material.tabs.TabLayout>
+
+    <Button
+        android:id="@+id/botaoNovaMsgRn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ESCREVER MENSAGEM" />
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"

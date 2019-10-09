@@ -1,5 +1,6 @@
 package br.senac.es.helpdeskrennan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.List;
 import br.senac.es.helpdeskrennan.API.ChamadoTask;
 import br.senac.es.helpdeskrennan.API.OnEventListener;
 import br.senac.es.helpdeskrennan.model.Chamados;
+import br.senac.es.helpdeskrennan.model.NovoChamadoActivity;
 
 
 public class TabelaDosChamadosFechados extends Fragment {
@@ -33,20 +35,23 @@ final View view = inflater.inflate(R.layout.teladoschamadosfechados, container, 
         ChamadoTask chamadoTask = new ChamadoTask(view.getContext(), new OnEventListener<String>() {
             @Override
             public void onSuccess(String result) {
-                Toast.makeText(view.getContext(), "FECHADOS: ", Toast.LENGTH_LONG).show();
+
 //                Log.e("JSON",result);
                 Gson gson = new Gson();
 
                 Chamados[] chamados = gson.fromJson(result, Chamados[].class);
 
-            for (Chamados chamado: chamados){
-                if(chamado.getStatus().toLowerCase().equals("fechado")){
 
-                listaDeChamadosFechados.add(chamado);
-
-
-
+                if(listaDeChamadosFechados == null){
+                    Intent intent = new Intent(getActivity(), NovoChamadoActivity.class);
+                    startActivity(intent);
                 }
+                for (Chamados chamado: chamados){
+                    if(chamado.getStatus().toLowerCase().equals("fechado")){
+
+                        listaDeChamadosFechados.add(chamado);
+
+                    }
                 ArrayAdapter<Chamados> adapter = new ArrayAdapter<Chamados>(getActivity(),android.R.layout.simple_list_item_1, listaDeChamadosFechados);
 
 

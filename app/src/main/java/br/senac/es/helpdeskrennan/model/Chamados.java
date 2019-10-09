@@ -5,7 +5,7 @@ import java.util.Date;
 public class Chamados {
    private int id;
     private Date dataAbertura;
-    private String decricao;
+    private String descricao;
     private String status;
     private String solucao;
 
@@ -26,11 +26,11 @@ public class Chamados {
     }
 
     public String getDecricao() {
-        return decricao;
+        return descricao;
     }
 
     public void setDecricao(String decricao) {
-        this.decricao = decricao;
+        this.descricao = decricao;
     }
 
     public String getStatus() {
@@ -52,7 +52,7 @@ public class Chamados {
     public Chamados(int id, Date dataAbertura, String decricao, String status, String solucao) {
         this.id = id;
         this.dataAbertura = dataAbertura;
-        this.decricao = decricao;
+        this.descricao = decricao;
         this.status = status;
         this.solucao = solucao;
     }
@@ -60,9 +60,12 @@ public class Chamados {
 
     @Override
     public String toString() {
-        return "Chamados" +
-                " dataAbertura=" + dataAbertura +
-                ", decricao='" + decricao + '\'' +
-                ", status='" + status;
+        return "Chamados{" +
+                "id=" + id +
+                ", dataAbertura=" + dataAbertura +
+                ", decricao='" + descricao + '\'' +
+                ", status='" + status + '\'' +
+                ", solucao='" + solucao + '\'' +
+                '}';
     }
 }
