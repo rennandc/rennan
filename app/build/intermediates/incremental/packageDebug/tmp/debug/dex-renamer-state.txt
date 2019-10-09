@@ -1,4 +1,4 @@
-#Tue Oct 08 21:31:59 BRT 2019
-base.0=C\:\\rennan\\android\\TrabalhoFinalHelpDeskRennan\\HelpDeskRennan\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Wed Oct 09 14:12:16 BRT 2019
+base.0=/home/rennan/Área de Trabalho/rennan/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

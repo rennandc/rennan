@@ -13,9 +13,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.collection.ArrayMap;
 
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import br.senac.es.helpdeskrennan.API.APIService;
@@ -44,13 +49,29 @@ public class NovoChamadoActivity extends AppCompatActivity {
         botaoEnviarMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                List<Chamados> listaDeChamados = new ArrayList<Chamados>();
+                for(Chamados chamados: listaDeChamados){
 
-                String mensagem = escreverMsg.getText().toString().trim();
+                    String mensagem = escreverMsg.getText().toString().trim();
+                    chamados.setDecricao(mensagem);
 
-                if (!TextUtils.isEmpty(mensagem)) {
-                    novoChamado(mensagem, getApplicationContext());
+                    if (!TextUtils.isEmpty(mensagem)) {
+                        novoChamado(chamados, getApplicationContext());
+
+                    }
+
+                    /*for(Chamados chamados: listaDeChamados){
+                        chamados.setDecricao(escreverMsg.getText().toString());
+
+
+                        novoChamado(chamados, getApplicationContext());
+
+                    }*/
 
                 }
+
+
+
 
 
             }
@@ -60,6 +81,8 @@ public class NovoChamadoActivity extends AppCompatActivity {
 
     public void novoChamado(Chamados chamado, final Context context) {
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
         Date dataEnvio = new Date();
         mAPIService = ApiUtils.getService();
 
@@ -67,7 +90,9 @@ public class NovoChamadoActivity extends AppCompatActivity {
         Map<String, String> jsonParams = new ArrayMap<>();
         jsonParams.put("descricao", chamado.getDecricao());
         jsonParams.put("status", chamado.getStatus());
-        jsonParams.put("dataAbertura", dataEnvio.getTime()+"");
+        jsonParams.put("dataAbertura", sdf.format(dataEnvio.getTime()));
+        jsonParams.put("status", chamado.getStatus());
+
 
 
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(jsonParams)).toString());
