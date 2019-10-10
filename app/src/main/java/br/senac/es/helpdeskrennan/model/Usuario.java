@@ -1,3 +1,6 @@
+/*Para desenvolvimentos futuros eu já deixei criado o modelo de Usuario também.
+* ele teŕa id,login e password assim como no servidor.*/
+
 package br.senac.es.helpdeskrennan.model;
 
 public class Usuario {

@@ -1,3 +1,5 @@
+/*Essa classe foi ctrl c ctrl v mas acho que é ela que organiza os meus fragmentos na tela*/
+
 package br.senac.es.helpdeskrennan;
 
 import androidx.annotation.Nullable;

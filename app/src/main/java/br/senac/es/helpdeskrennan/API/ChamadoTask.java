@@ -1,3 +1,8 @@
+/*
+* ChamadoTask nos utilizados para se comunicar com o servidor pela url do apiUtils e o link "chamados", mais no final
+* desse código é onde ele faz o post, sempre quando as informações forem diferentes de null.
+* */
+
 package br.senac.es.helpdeskrennan.API;
 
 import android.content.Context;

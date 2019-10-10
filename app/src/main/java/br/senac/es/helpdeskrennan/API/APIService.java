@@ -1,3 +1,7 @@
+/*
+Api no qual se comunica com o servidor por meio de port, onde ele realiza o post do salvarChamado no link "chamados".
+* */
+
 package br.senac.es.helpdeskrennan.API;
 
 import okhttp3.RequestBody;

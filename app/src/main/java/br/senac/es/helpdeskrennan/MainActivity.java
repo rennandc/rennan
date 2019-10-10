@@ -1,3 +1,6 @@
+/*Aqui eu irei fazer o login do usuario conforme usuarios cadastrados no servidor, esse processo ainda não foi aprovado
+* por falta de verba.*/
+
 package br.senac.es.helpdeskrennan;
 
 import android.os.Bundle;

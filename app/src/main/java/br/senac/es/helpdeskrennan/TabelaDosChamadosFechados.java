@@ -1,3 +1,5 @@
+/*Aqui faço basicamente a mesma coisa do chamados abertos, as únicar diferenças são os id e o xml também é diferente,
+* e aqui eu faço a verificação se os chamados são fechados antes de adciona-los na lista*/
 package br.senac.es.helpdeskrennan;
 
 import android.os.Bundle;

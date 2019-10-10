@@ -23,7 +23,8 @@
         android:id="@+id/botaoNovaMsgRn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ESCREVER MENSAGEM" />
+        android:shadowColor="#004752B4"
+        android:text="ESCREVER NOVO CHAMADO" />
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"

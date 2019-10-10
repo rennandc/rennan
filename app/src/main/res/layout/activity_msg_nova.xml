@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/msgRn"
-        android:layout_width="match_parent"
-        android:layout_height="184dp"
+        android:layout_width="386dp"
+        android:layout_height="464dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="17dp"
@@ -17,7 +17,7 @@
         android:layout_marginRight="20dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Digite sua mensagem"
+        android:hint="Descreva o seu chamado"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

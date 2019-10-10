@@ -1,3 +1,11 @@
+/*
+* Aqui fica o modelo de chamados, cada variável tem que ser de acordo com o banco de dados.
+* Foi estanciando e encapsulados  as variáveis:  int id;  Date dataAbertura; String descricao;String status;String solucao;
+    * e todas foi realizado o processo de Get e Set para que possamos realizar consultas nas mesmas, também instanciamos o
+    * construtor com todos os parametros e também vázio para que possamos iniciar um novo objeto da classe Chamados. Também
+    * foi feito o processo de Tostring para que todos os atributos fossem possíveis de serem lidos e entendidos por pessoas
+.* */
+
 package br.senac.es.helpdeskrennan.model;
 
 import com.google.gson.annotations.Expose;

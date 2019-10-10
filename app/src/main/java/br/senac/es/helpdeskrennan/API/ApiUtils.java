@@ -1,3 +1,7 @@
+/*
+* Quando vamos abrir um novo chamado nós importamos essa Api para que o programa saiba qual url usar.
+* */
+
 package br.senac.es.helpdeskrennan.API;
 
 public class ApiUtils {
