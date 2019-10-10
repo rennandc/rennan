@@ -1,8 +1,13 @@
 package br.senac.es.helpdeskrennan.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Chamados {
+    @SerializedName("id")
+    @Expose
    private int id;
     private Date dataAbertura;
     private String descricao;
@@ -55,6 +60,10 @@ public class Chamados {
         this.descricao = decricao;
         this.status = status;
         this.solucao = solucao;
+    }
+
+    public Chamados (){
+
     }
 
 

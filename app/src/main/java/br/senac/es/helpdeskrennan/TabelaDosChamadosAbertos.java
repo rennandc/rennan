@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -29,48 +30,59 @@ public class TabelaDosChamadosAbertos extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.teladoschamadosabertos, container, false);
+        final View viewFragmente = inflater.inflate(R.layout.teladoschamadosabertos, container, false);
 
-        final List<Chamados> listaDeChamadosAbertos = new ArrayList<Chamados>();
 
-        ChamadoTask chamadoTask = new ChamadoTask(view.getContext(), new OnEventListener<String>() {
+        final FloatingActionButton botaoAtualizar = (FloatingActionButton) viewFragmente.findViewById(R.id.botaoRn);
+        atualizarChamados(viewFragmente);
+
+
+        botaoAtualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                atualizarChamados(viewFragmente);
+
+            }
+        });
+        return viewFragmente;
+    }
+
+    private void atualizarChamados(final View viewMetodo) {
+        final List<Chamados> lista = new ArrayList<Chamados>();
+        ChamadoTask chamadoTask = new ChamadoTask(viewMetodo.getContext(), new OnEventListener<String>() {
             @Override
             public void onSuccess(String result) {
-                Toast.makeText(view.getContext(), "CHAMADOS: ", Toast.LENGTH_LONG).show();
-//                Log.e("JSON",result);
                 Gson gson = new Gson();
-
                 Chamados[] chamados = gson.fromJson(result, Chamados[].class);
 
                 for (Chamados chamado : chamados) {
+                    if (chamado.getStatus() != null) {
+                        if (chamado.getStatus().toLowerCase().equals("aberto")) {
+                            lista.add(chamado);
+
+                        }
 
 
-                    if (listaDeChamadosAbertos == null) {
-                        Intent intent = new Intent(getActivity(), NovoChamadoActivity.class);
-                        startActivity(intent);
                     }
 
-                    if (chamado.getStatus().toLowerCase().equals("aberto")) {
-
-                        listaDeChamadosAbertos.add(chamado);
-                    }
-                    ArrayAdapter<Chamados> adapter = new ArrayAdapter<Chamados>(getActivity(), android.R.layout.simple_list_item_1, listaDeChamadosAbertos);
-
-
-                    listChamadosAbertos = (ListView) view.findViewById(R.id.lista);
-                    listChamadosAbertos.setAdapter(adapter);
                 }
-
+                ArrayAdapter<Chamados> adapter = new ArrayAdapter<Chamados>(getActivity(), android.R.layout.simple_list_item_1, lista);
+                listChamadosAbertos = (ListView) viewMetodo.findViewById(R.id.lista);
+                listChamadosAbertos.setAdapter(adapter);
 
             }
 
             @Override
             public void onFailure(Exception e) {
-                Toast.makeText(view.getContext(), "ERROR: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(viewMetodo.getContext(), "ERROR: " + e.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         });
         chamadoTask.execute();
-        return view;
     }
 }
+
+
+
+
+

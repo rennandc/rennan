@@ -3,17 +3,17 @@ package br.senac.es.helpdeskrennan.model;
 public enum Status {
 
 
-    ENVIADA {
+    ABERTO {
         @Override
         public String toString() {
-            return "ENVIADA";
+            return "ABERTO";
         }
 
     },
-    NAOENVIADA {
+    FECHADO {
         @Override
         public String toString() {
-            return "NÃO ENVIADA";
+            return "FECHADO";
 
         }
     },

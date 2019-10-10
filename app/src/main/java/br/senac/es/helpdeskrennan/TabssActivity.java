@@ -28,7 +28,6 @@ public class TabssActivity extends AppCompatActivity {
 
 adapter = new TabAdapter(getSupportFragmentManager());
 adapter.addFragment(new TabelaDosChamadosAbertos(),"ABERTOS");
-//adapter.addFragment(new MainActivity(),"LOGIN");
 adapter.addFragment(new TabelaDosChamadosFechados(),"FECHADAS");
 viewPager.setAdapter(adapter);
 tabLayout.setupWithViewPager(viewPager);

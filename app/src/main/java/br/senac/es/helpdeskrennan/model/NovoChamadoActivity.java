@@ -42,35 +42,25 @@ public class NovoChamadoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_msg_nova);
         final EditText escreverMsg = (EditText) findViewById(R.id.msgRn);
-        Button botaoEnviarMsg = (Button)findViewById(R.id.enviarRn);
+        Button botaoEnviarMsg = (Button) findViewById(R.id.enviarRn);
 
         mAPIService = ApiUtils.getService();
 
         botaoEnviarMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<Chamados> listaDeChamados = new ArrayList<Chamados>();
-                for(Chamados chamados: listaDeChamados){
-
-                    String mensagem = escreverMsg.getText().toString().trim();
-                    chamados.setDecricao(mensagem);
-
-                    if (!TextUtils.isEmpty(mensagem)) {
-                        novoChamado(chamados, getApplicationContext());
-
-                    }
-
-                    /*for(Chamados chamados: listaDeChamados){
-                        chamados.setDecricao(escreverMsg.getText().toString());
 
 
-                        novoChamado(chamados, getApplicationContext());
+                String mensagem = escreverMsg.getText().toString().trim();
 
-                    }*/
+                Chamados chamados = new Chamados();
+                chamados.setDecricao(mensagem);
+
+
+                if (!TextUtils.isEmpty(mensagem)) {
+                    novoChamado(chamados, getApplicationContext());
 
                 }
-
-
 
 
 
@@ -81,6 +71,8 @@ public class NovoChamadoActivity extends AppCompatActivity {
 
     public void novoChamado(Chamados chamado, final Context context) {
 
+
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
         Date dataEnvio = new Date();
@@ -89,36 +81,29 @@ public class NovoChamadoActivity extends AppCompatActivity {
 
         Map<String, String> jsonParams = new ArrayMap<>();
         jsonParams.put("descricao", chamado.getDecricao());
-        jsonParams.put("status", chamado.getStatus());
-        jsonParams.put("dataAbertura", sdf.format(dataEnvio.getTime()));
-        jsonParams.put("status", chamado.getStatus());
+        jsonParams.put("status", Status.ABERTO.toString());
+        jsonParams.put("dataAbertura", sdf.format(dataEnvio.getTime())+ "");
 
 
 
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),(new JSONObject(jsonParams)).toString());
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
 
         Call<ResponseBody> response = mAPIService.salvarChamado(body);
 
-        response.enqueue(new Callback<ResponseBody>()
-        {
+        response.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> rawResponse)
-            {
-                try
-                {
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> rawResponse) {
+                try {
                     Toast.makeText(context, "Chamado aberto com sucesso!!!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(NovoChamadoActivity.this, TabssActivity.class);
                     startActivity(intent);
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable throwable)
-            {
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
                 // other stuff...
                 Toast.makeText(context, "A abertura do chamado falhou!", Toast.LENGTH_SHORT).show();
             }
