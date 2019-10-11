@@ -95,7 +95,7 @@ public class NovoChamadoActivity extends AppCompatActivity {
         //O Array espera receber dois campos em String então passamos o nome conforme servidor e qual atributo.
         //correspondente a ele no modelo de Chamados.
         jsonParams.put("descricao", chamado.getDecricao());
-        jsonParams.put("status", Status.ABERTO.toString());
+        jsonParams.put("status", Status.FECHADO.toString());
         jsonParams.put("dataAbertura", sdf.format(dataEnvio.getTime())+ "");
 
 
